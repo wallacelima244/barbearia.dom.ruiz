@@ -207,6 +207,7 @@ img{ max-width:100%; display:block; }
   gap: 18px;
   position: relative;
 }
+
 .hero__seal{
   width: 78px; height: 78px;
   border-radius: 22px;
@@ -481,7 +482,7 @@ img{ max-width:100%; display:block; }
 }
 .linkBtn:hover{ transform: translateY(-2px); border-color: rgba(77,163,255,0.25); }
 
-/* Nosso Espaço (foto + vídeo) */
+/* Nosso Espaço */
 .spaceMini{ margin-top: 14px; display:flex; flex-direction:column; gap: 10px; }
 .miniLine{ display:flex; align-items:center; gap: 10px; color: rgba(255,255,255,0.78); font-weight: 900; }
 .miniDot{
@@ -490,9 +491,9 @@ img{ max-width:100%; display:block; }
   background: rgba(77,163,255,0.85);
   box-shadow: 0 0 0 6px rgba(77,163,255,0.10);
 }
-
 .spaceMediaStack{ display:grid; gap: 12px; }
 
+/* imagem do espaço (não alterei) */
 .spaceCover{
   width: 100%;
   height: 260px;
@@ -502,31 +503,22 @@ img{ max-width:100%; display:block; }
   background: rgba(0,0,0,0.25);
 }
 
-/* CAIXA DO VÍDEO - trava no lugar (16:9) */
+/* VIDEO REELS 9:16 (tamanho certo) */
 .spaceVideoBox{
-  width: 100%;
-  aspect-ratio: 16 / 9;
+  width: min(360px, 100%);
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(0,0,0,0.25);
-  display:grid;
-  place-items:center;
+  background: #000;
+  box-shadow: 0 24px 70px rgba(0,0,0,0.45);
 }
 .spaceVideo{
   width: 100%;
   height: 100%;
-  display:block;
+  display: block;
   object-fit: cover;
-}
-.spaceVideoPlaceholder{
-  width: 100%;
-  height: 100%;
-  padding: 18px;
-  display:grid;
-  align-content:center;
-  gap: 6px;
-  text-align:center;
 }
 
 /* Horários */
@@ -602,43 +594,6 @@ img{ max-width:100%; display:block; }
 }
 .footer__links a:hover{ opacity: 1; transform: translateY(-1px); }
 
-/* Floating buttons */
-.wa{
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  width: 56px;
-  height: 56px;
-  border-radius: 18px;
-  display:grid;
-  place-items:center;
-  background: linear-gradient(135deg, #19B394, #0c7a63);
-  border: 1px solid rgba(255,255,255,0.18);
-  box-shadow: 0 24px 70px rgba(0,0,0,0.50);
-  z-index: 60;
-  transition: .18s ease;
-}
-.wa:hover{ transform: translateY(-2px); }
-.wa svg{ width: 26px; height: 26px; fill: #fff; }
-
-.ig{
-  position: fixed;
-  right: 18px;
-  bottom: 86px;
-  width: 56px;
-  height: 56px;
-  border-radius: 18px;
-  display:grid;
-  place-items:center;
-  background: linear-gradient(135deg, #833AB4, #FD1D1D);
-  border: 1px solid rgba(255,255,255,0.18);
-  box-shadow: 0 24px 70px rgba(0,0,0,0.50);
-  z-index: 60;
-  transition: .18s ease;
-}
-.ig:hover{ transform: translateY(-2px); }
-.ig svg{ width: 26px; height: 26px; fill: #fff; }
-
 /* Reveal */
 .reveal{
   opacity: 0;
@@ -652,7 +607,41 @@ img{ max-width:100%; display:block; }
   html{ scroll-behavior: auto; }
   .reveal{ opacity: 1; transform: none; transition: none; }
   .chev{ animation: none; }
-  .btn, .card, .chip, .wa, .ig{ transition: none; }
+  .btn, .card, .chip{ transition: none; }
+}
+
+/* Floating buttons (Whats + Instagram) */
+.fab{
+  position: fixed;
+  right: 18px;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  z-index: 999;
+
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.50);
+  transition: transform .18s ease, filter .18s ease;
+  color: #fff;
+}
+.fab svg{
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+.fab:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+.fab--wa{
+  bottom: 18px;
+  background: linear-gradient(135deg, #19B394, #0c7a63);
+}
+.fab--ig{
+  bottom: 86px;
+  background: linear-gradient(135deg, #833AB4, #FD1D1D);
 }
 
 /* Responsive */
@@ -667,4 +656,48 @@ img{ max-width:100%; display:block; }
   .cards{ grid-template-columns: 1fr; }
   .panel__grid{ grid-template-columns: 1fr; }
   .contactCards{ grid-template-columns: 1fr; }
+}
+/* ===========================
+   Floating Social (oficial)
+   =========================== */
+.socialFloat{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.socialFloat__btn{
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+  transition: transform .18s ease, filter .18s ease, border-color .18s ease;
+}
+
+.socialFloat__btn:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+  border-color: rgba(77,163,255,0.25);
+}
+
+.socialFloat__icon{
+  width: 28px;
+  height: 28px;
+  display: block;
+  object-fit: contain;
+}
+
+/* Ajuste fino: o SVG do WhatsApp às vezes vem grande */
+.socialFloat__btn--wa .socialFloat__icon{
+  width: 30px;
+  height: 30px;
 }

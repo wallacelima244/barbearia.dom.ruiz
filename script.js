@@ -84,3 +84,4 @@ document.addEventListener("click", (e) => {
 
   window.scrollTo({ top, behavior: "smooth" });
 });
+
