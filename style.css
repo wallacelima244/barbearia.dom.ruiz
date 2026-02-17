@@ -595,12 +595,17 @@ img{ max-width:100%; display:block; }
 .footer__links a:hover{ opacity: 1; transform: translateY(-1px); }
 
 /* Reveal */
-.reveal{
+/* Reveal animations (seguro: não some se o JS falhar) */
+.js .reveal{
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity .6s ease, transform .6s ease;
+  transform: translateY(16px) scale(0.985);
+  transition: 0.6s cubic-bezier(.2,.8,.2,1);
+  will-change: transform, opacity;
 }
-.reveal.is-visible{ opacity: 1; transform: translateY(0); }
+.js .reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce){
