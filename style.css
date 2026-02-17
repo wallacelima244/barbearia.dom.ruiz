@@ -701,3 +701,8 @@ img{ max-width:100%; display:block; }
   width: 30px;
   height: 30px;
 }
+/* Fallback: se o JS falhar, não esconda o conteúdo */
+body.preload .reveal{
+  opacity: 1 !important;
+  transform: none !important;
+}
