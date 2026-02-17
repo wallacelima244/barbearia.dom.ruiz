@@ -1,24 +1,23 @@
-// ========= Page load (carregamento suave) =========
+// Carregamento suave
 window.addEventListener("load", () => {
   document.body.classList.remove("preload");
   document.body.classList.add("loaded");
 });
 
-// ========= Ano no footer =========
+// Ano no footer
 const year = document.getElementById("year");
 if (year) year.textContent = new Date().getFullYear();
 
-// ========= Header scroll effect =========
+// Header scroll effect
 const header = document.querySelector("[data-header]");
 function onScrollHeader() {
   if (!header) return;
-  const y = window.scrollY || 0;
-  header.classList.toggle("is-scrolled", y > 8);
+  header.classList.toggle("is-scrolled", (window.scrollY || 0) > 8);
 }
 window.addEventListener("scroll", onScrollHeader, { passive: true });
 onScrollHeader();
 
-// ========= Menu mobile =========
+// Menu mobile
 const btn = document.querySelector("[data-menu-btn]");
 const mobile = document.querySelector("[data-mobile-nav]");
 
@@ -38,18 +37,16 @@ function toggleMobile() {
 
 btn?.addEventListener("click", toggleMobile);
 
-// Fecha ao clicar em qualquer link do menu
 mobile?.addEventListener("click", (e) => {
   const a = e.target.closest("a");
   if (a) closeMobile();
 });
 
-// Fecha com ESC
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeMobile();
 });
 
-// ========= Reveal animations =========
+// Reveal
 const reveals = document.querySelectorAll(".reveal");
 if ("IntersectionObserver" in window && reveals.length) {
   const observer = new IntersectionObserver(
@@ -68,7 +65,7 @@ if ("IntersectionObserver" in window && reveals.length) {
   reveals.forEach((el) => el.classList.add("is-visible"));
 }
 
-// ========= Smooth anchor offset for sticky header =========
+// Smooth anchors com offset do header sticky
 document.addEventListener("click", (e) => {
   const link = e.target.closest('a[href^="#"]');
   if (!link) return;
